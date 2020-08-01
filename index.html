@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!--<link rel="icon" href="/favicon.png" type="image/png">-->
+</head>
+
+<body role="document">
+    <div id="mce">
+        <h2>Hey howdy</h2>
+        <p>Good morning sir</p>
+        <h3>Table of contents</h3>
+        <ol>
+            <li>Start</li>
+            <li>Body</li>
+            <li>Wrap Up</li>
+        </ol>
+        <h2>Body</h2>
+        <h2>Wrap up</h2>
+    </div>
+
+    <div id="result">
+
+    </div>
+
+    <script type="module">
+        {
+            const mce = document.getElementById("mce");
+
+            (async () => {
+                const {Parser} = await import('./src/Parser/index.js');
+
+                const parser = new Parser(mce.innerHTML);
+
+                console.log(parser.getHtml())
+            })();
+        }
+    </script>
+
+    <script>
+        {
+            (async () => {
+                const {parseChildren} = await import('./src/Parser/index.js');
+
+                const result = document.getElementById("result");
+
+                fetch("./editorState.json")
+                    .then(response => response.json())
+                    .then(tree => {
+                        const items = [];
+
+                        tree.forEach(item => {
+                            let block;
+
+                            if(item.type === "paragraph") {
+                                block = document.createElement("p");
+
+                                parseChildren(block, item.children);
+
+                            } else if (item.type === "heading") {
+                                block = document.createElement(`h${item.level}`);
+
+                                if(item.id) {
+                                    block.id = item.id;
+                                }
+
+                                parseChildren(block, item.children);
+                            } else if (item.type === "list") {
+                                if(item.bullet)
+                                block = document.createElement(`h${item.level}`);
+                            }
+
+                            if(block) {
+                                items.push(block);
+                            }
+                        });
+
+                        items.forEach(item => {
+                            result.appendChild(item);
+                        });
+                    });
+            })();
+        }
+    </script>
+</body>
+</html>

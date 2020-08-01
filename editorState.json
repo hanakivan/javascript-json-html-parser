@@ -1,0 +1,92 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "type": "text",
+        "text": "Hey all!"
+      },
+      {
+        "type": "break"
+      },
+      {
+        "type": "break"
+      },
+      {
+        "type": "text",
+        "text": " It's been a while since we partied "
+      },
+      {
+        "type": "strong",
+        "children": [
+          {
+            "type": "text",
+            "text": "together"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": " in a pool full of people!"
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "id": "table-of-contents",
+    "level" : 2,
+    "children": [
+      {
+        "type": "text",
+        "text": "Table of contents:"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "bullet": "decimal",
+    "children": [
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "anchor",
+            "href": "#table-of-contents",
+            "children": [
+              {
+                "type": "text",
+                "text": "How to start a podcast?"
+              },
+              {
+                "type": "text",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "Where to find your topics?"
+          }
+        ]
+      },
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "text",
+            "text": "Where to find your topics?"
+          }
+        ]
+      },
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "text",
+            "text": "What equipment do you need?"
+          }
+        ]
+      }
+    ]
+  }
+]
