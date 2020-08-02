@@ -98,24 +98,10 @@
 
     </div>
 
-    <script type="module">
-        {
-            const mce = document.getElementById("mce");
-
-            (async () => {
-                const {Parser} = await import('./src/Parser/index.js');
-
-                const parser = new Parser(mce.innerHTML);
-
-                console.log(parser.getHtml())
-            })();
-        }
-    </script>
-
     <script>
         {
             (async () => {
-                const {parseChildren} = await import('./src/Parser/index.js');
+                const {parseChildren, isBlockElement, createElementForElementName} = await import('./src/Parser/index.js');
 
                 const result = document.getElementById("result");
 
@@ -127,63 +113,16 @@
                         tree.forEach(item => {
                             let block;
 
-                            if(item.type === "paragraph") {
-                                block = document.createElement("p");
+                            if(isBlockElement(item.type)) {
+                                block = createElementForElementName(item.type, item);
 
-                                parseChildren(block, item.children);
-
-                            } else if (item.type === "heading") {
-                                block = document.createElement(`h${item.level}`);
-
-                                if(item.id) {
-                                    block.id = item.id;
+                                if(item.children) {
+                                    parseChildren(block, item.children);
                                 }
 
-                                parseChildren(block, item.children);
-                            } else if (item.type === "list") {
-                                if(item.order === "ordered") {
-                                    block = document.createElement(`ol`);
-                                } else if(item.order === "unordered") {
-                                    block = document.createElement(`ul`);
-                                } else {
-                                    console.log("unknown order type of the list", item)
-                                }
-
-                                if(block) {
-                                    item.children.forEach(kid => {
-                                        if(kid.type === "listitem") {
-                                            const listItem = document.createElement(`li`);
-
-                                            kid.children.forEach(subKid => {
-                                                if(subKid.type === "anchor") {
-                                                    const kiddo = document.createElement("a");
-
-                                                    kiddo.href = subKid.href;
-
-                                                    parseChildren(kiddo, subKid.children);
-
-                                                    listItem.appendChild(kiddo);
-                                                } else if(subKid.type === "text") {
-                                                    const kiddo = document.createTextNode(subKid.text);
-
-                                                    listItem.appendChild(kiddo);
-                                                } else {
-                                                    console.warn("unknown type", subKid);
-                                                }
-                                            });
-
-                                            block.appendChild(listItem);
-                                        }
-                                    });
-                                }
-                            } else if (item.type === "preformatted") {
-                                block = document.createElement("pre");
-
-                                parseChildren(block, item.children);
-                            }
-
-                            if(block) {
                                 items.push(block);
+                            } else {
+                                console.error("In the main loop there is not a block element!", item)
                             }
                         });
 
