@@ -1,6 +1,10 @@
 [
   {
     "type": "paragraph",
+    "dataset": {
+      "ids": "[1,1,4,2]",
+      "perf": "hidden"
+    },
     "children": [
       {
         "type": "text",
@@ -138,6 +142,9 @@
       },
       {
         "type": "listitem",
+        "dataset": {
+          "element-type": "listitem"
+        },
         "children": [
           {
             "type": "text",
@@ -183,6 +190,9 @@
       },
       {
         "type": "code",
+        "dataset": {
+          "lang": "javascript"
+        },
         "children": [
           {
             "type": "text",

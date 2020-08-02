@@ -47,11 +47,19 @@ export const parseChildren = (block, children) => {
                 parseChildren(kiddo, kid.children);
             }
 
+            if(typeof kid["dataset"] !== "undefined") {
+                parseDataSet(kiddo, kid.dataset);
+            }
+
             block.appendChild(kiddo);
         } else if (kid.type === "listitem") {
             const listItem = document.createElement(`li`);
 
             parseChildren(listItem, kid.children);
+
+            if(typeof kid["dataset"] !== "undefined") {
+                parseDataSet(listItem, kid.dataset);
+            }
 
             block.appendChild(listItem);
         } else {
@@ -98,7 +106,20 @@ export const createElementForElementName = (elementName, options = {}) => {
         if(typeof options["id"] !== "undefined") {
             block.id = options["id"];
         }
+
+        if(typeof options["dataset"] !== "undefined") {
+            parseDataSet(block, options.dataset);
+        }
     }
 
     return block;
+};
+
+const parseDataSet = (element, params) => {
+    Object.entries(params).forEach(item => {
+        const key = item[0];
+        const value = item[1];
+
+        element.setAttribute(`data-${key}`, value);
+    });
 };
