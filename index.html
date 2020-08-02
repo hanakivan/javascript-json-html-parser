@@ -111,6 +111,10 @@
                                         }
                                     });
                                 }
+                            } else if (item.type === "preformatted") {
+                                block = document.createElement("pre");
+
+                                parseChildren(block, item.children);
                             }
 
                             if(block) {

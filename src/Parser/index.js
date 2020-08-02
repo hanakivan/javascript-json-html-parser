@@ -40,6 +40,22 @@ export const parseChildren = (block, children) => {
             });
 
             block.appendChild(kiddo);
+        } else if (kid.type === "break") {
+            const kiddo = document.createElement("br");
+
+            block.appendChild(kiddo);
+        } else if (kid.type === "code") {
+            const kiddo = document.createElement("code");
+
+            kid.children.forEach(subKid => {
+                if(subKid.type === "text") {
+                    const subKiddo = document.createTextNode(subKid.text);
+
+                    kiddo.appendChild(subKiddo);
+                }
+            });
+
+            block.appendChild(kiddo);
         }
     });
 };

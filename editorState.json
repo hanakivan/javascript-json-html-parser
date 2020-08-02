@@ -146,5 +146,51 @@
         ]
       }
     ]
+  },
+  {
+    "type": "heading",
+    "level" : 2,
+    "children": [
+      {
+        "type": "text",
+        "text": "Code example"
+      }
+    ]
+  },
+  {
+    "type": "preformatted",
+    "children": [
+      {
+        "type": "code",
+        "children": [
+          {
+            "type": "text",
+            "text": "const item = getItem();"
+          }
+        ]
+      },
+      {
+        "type": "break"
+      },
+      {
+        "type": "code",
+        "children": [
+          {
+            "type": "text",
+            "text": "item.eat();"
+          }
+        ]
+      },
+      {
+        "type": "break"
+      },
+      {
+        "type": "break"
+      },
+      {
+        "type": "text",
+        "text": "and this is how you can code!"
+      }
+    ]
   }
 ]
