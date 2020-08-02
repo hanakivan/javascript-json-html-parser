@@ -44,7 +44,65 @@
   },
   {
     "type": "list",
-    "bullet": "decimal",
+    "order": "ordered",
+    "children": [
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "anchor",
+            "href": "#table-of-contents",
+            "children": [
+              {
+                "type": "text",
+                "text": "How to start a podcast?"
+              },
+              {
+                "type": "text",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "Where to find your topics?"
+          }
+        ]
+      },
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "text",
+            "text": "Where to find your topics?"
+          }
+        ]
+      },
+      {
+        "type": "listitem",
+        "children": [
+          {
+            "type": "text",
+            "text": "What equipment do you need?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "id": "table-of-contents",
+    "level" : 2,
+    "children": [
+      {
+        "type": "text",
+        "text": "Ingredients"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "order": "unordered",
     "children": [
       {
         "type": "listitem",

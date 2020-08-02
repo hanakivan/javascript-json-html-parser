@@ -76,8 +76,41 @@
 
                                 parseChildren(block, item.children);
                             } else if (item.type === "list") {
-                                if(item.bullet)
-                                block = document.createElement(`h${item.level}`);
+                                if(item.order === "ordered") {
+                                    block = document.createElement(`ol`);
+                                } else if(item.order === "unordered") {
+                                    block = document.createElement(`ul`);
+                                } else {
+                                    console.log("unknown order type of the list", item)
+                                }
+
+                                if(block) {
+                                    item.children.forEach(kid => {
+                                        if(kid.type === "listitem") {
+                                            const listItem = document.createElement(`li`);
+
+                                            kid.children.forEach(subKid => {
+                                                if(subKid.type === "anchor") {
+                                                    const kiddo = document.createElement("a");
+
+                                                    kiddo.href = subKid.href;
+
+                                                    parseChildren(kiddo, subKid.children);
+
+                                                    listItem.appendChild(kiddo);
+                                                } else if(subKid.type === "text") {
+                                                    const kiddo = document.createTextNode(subKid.text);
+
+                                                    listItem.appendChild(kiddo);
+                                                } else {
+                                                    console.warn("unknown type", subKid);
+                                                }
+                                            });
+
+                                            block.appendChild(listItem);
+                                        }
+                                    });
+                                }
                             }
 
                             if(block) {
