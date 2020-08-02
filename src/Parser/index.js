@@ -28,34 +28,29 @@ export const parseChildren = (block, children) => {
             const kiddo = document.createTextNode(kid.text);
 
             block.appendChild(kiddo);
-        } else if (kid.type === "strong") {
-            const kiddo = document.createElement("strong");
+        } else if (["em", "strong", "b", "i", "span", "cite", "code", "key", "break"].includes(kid.type)) {
+            const kiddo = document.createElement(getElementTagNameForName(kid.type));
 
-            kid.children.forEach(subKid => {
-                if(subKid.type === "text") {
-                    const subKiddo = document.createTextNode(subKid.text);
+            if(kid.children) {
+                kid.children.forEach(subKid => {
+                    if(subKid.type === "text") {
+                        const subKiddo = document.createTextNode(subKid.text);
 
-                    kiddo.appendChild(subKiddo);
-                }
-            });
-
-            block.appendChild(kiddo);
-        } else if (kid.type === "break") {
-            const kiddo = document.createElement("br");
-
-            block.appendChild(kiddo);
-        } else if (kid.type === "code") {
-            const kiddo = document.createElement("code");
-
-            kid.children.forEach(subKid => {
-                if(subKid.type === "text") {
-                    const subKiddo = document.createTextNode(subKid.text);
-
-                    kiddo.appendChild(subKiddo);
-                }
-            });
+                        kiddo.appendChild(subKiddo);
+                    }
+                });
+            }
 
             block.appendChild(kiddo);
         }
     });
+};
+
+const getElementTagNameForName = (elementName) => {
+    switch(elementName) {
+        case "break":
+            return "br";
+    }
+
+    return elementName;
 };
