@@ -58,12 +58,18 @@
             "href": "#starting-a-youtube-channel",
             "children": [
               {
-                "type": "text",
-                "text": "How to start a youtube channel?"
-              },
-              {
-                "type": "text",
-                "text": ""
+                "type": "strong",
+                "children": [
+                  {
+                    "type": "em",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "How to start a youtube channel"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -197,6 +203,15 @@
           {
             "type": "text",
             "text": "item.eat();"
+          },
+          {
+            "type": "span",
+            "children": [
+              {
+                "type": "text",
+                "text": "//this is a comment"
+              }
+            ]
           }
         ]
       },
