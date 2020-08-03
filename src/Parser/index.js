@@ -55,6 +55,10 @@ export const parseChildren = (block, children) => {
                 parseDataSet(kiddo, kid.dataset);
             }
 
+            if(typeof kid["style"] !== "undefined") {
+                parseStyles(kiddo, kid.style);
+            }
+
             block.appendChild(kiddo);
         }  else if (kid.type === "listitem") {
             const listItem = document.createElement(`li`);
@@ -63,6 +67,10 @@ export const parseChildren = (block, children) => {
 
             if(typeof kid["dataset"] !== "undefined") {
                 parseDataSet(listItem, kid.dataset);
+            }
+
+            if(typeof kid["style"] !== "undefined") {
+                parseStyles(kiddo, kid.style);
             }
 
             block.appendChild(listItem);
@@ -114,6 +122,10 @@ export const createElementForElementName = (elementName, options = {}) => {
         if(typeof options["dataset"] !== "undefined") {
             parseDataSet(block, options.dataset);
         }
+
+        if(typeof options["style"] !== "undefined") {
+            parseStyles(block, options.style);
+        }
     }
 
     return block;
@@ -125,5 +137,14 @@ const parseDataSet = (element, params) => {
         const value = item[1];
 
         element.setAttribute(`data-${key}`, value);
+    });
+};
+
+const parseStyles = (element, styleObject) => {
+    Object.entries(styleObject).forEach(item => {
+        const property = item[0];
+        const value = item[1];
+
+        element.style[property] = value;
     });
 };

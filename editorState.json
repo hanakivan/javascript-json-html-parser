@@ -5,6 +5,10 @@
       "ids": "[1,1,4,2]",
       "perf": "hidden"
     },
+    "style": {
+      "textTransform": "uppercase",
+      "backgroundColor": "#eee"
+    },
     "children": [
       {
         "type": "text",
@@ -22,6 +26,11 @@
       },
       {
         "type": "strong",
+        "style": {
+          "backgroundColor": "orange",
+          "color": "blue",
+          "fontSize": "1.3em"
+        },
         "children": [
           {
             "type": "text",
