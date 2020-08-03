@@ -36,6 +36,16 @@
     ]
   },
   {
+    "type": "attachment",
+    "subtype": "image",
+    "attributes": {
+      "id": 124,
+      "src": "https://static.toiimg.com/photo/msid-58515713,width-96,height-65.cms",
+      "width": 1000,
+      "height": 667
+    }
+  },
+  {
     "type": "heading",
     "id": "table-of-contents",
     "level" : 2,

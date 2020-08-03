@@ -26,6 +26,10 @@ export const isInlineElement = (elementName) => {
     return INLINE_ELEMENTS.includes(elementName);
 };
 
+export const isAttachment = (elementName) => {
+    return elementName === "attachment";
+};
+
 const isTextNode = (elementName) => {
     return elementName === "text";
 };
@@ -52,7 +56,7 @@ export const parseChildren = (block, children) => {
             }
 
             block.appendChild(kiddo);
-        } else if (kid.type === "listitem") {
+        }  else if (kid.type === "listitem") {
             const listItem = document.createElement(`li`);
 
             parseChildren(listItem, kid.children);

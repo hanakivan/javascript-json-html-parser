@@ -101,7 +101,7 @@
     <script>
         {
             (async () => {
-                const {parseChildren, isBlockElement, createElementForElementName} = await import('./src/Parser/index.js');
+                const {parseChildren, isBlockElement, isAttachment, createElementForElementName} = await import('./src/Parser/index.js');
 
                 const result = document.getElementById("result");
 
@@ -121,6 +121,21 @@
                                 }
 
                                 items.push(block);
+                            } else if (isAttachment(item.type)) {
+                                if(item.subtype === "image") {
+                                    const kiddo = document.createElement("div");
+                                    const kiddoImg = document.createElement("img");
+
+                                    kiddo.appendChild(kiddoImg);
+
+                                    kiddo.setAttribute("data-id", item.attributes.id);
+
+                                    kiddoImg.src = item.attributes.src;
+
+                                    items.push(kiddo);
+                                } else {
+                                    console.warn("incorrect subtype");
+                                }
                             } else {
                                 console.error("In the main loop there is not a block element!", item)
                             }
