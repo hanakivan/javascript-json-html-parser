@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <style>
+        /*span {
+            background-color: orange;position: relative;
+        }
+        span::before {
+            position: absolute;
+            left: 50%;
+            bottom: 100%;
+            margin-bottom: 3px;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 300;
+            color: orange;
+            content: "<span />";
+            display: block;
+        }
+        code {
+            background-color: rgba(0,0,0,.1);position: relative;
+        }
+        code::before {
+            position: absolute;
+            left: 50%;
+            bottom: 100%;
+            margin-bottom: 3px;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 300;
+            color: #ddd;
+            content: "<code />";
+            display: block;
+        }
+        strong {
+            background-color: black; color: white; position: relative;
+        }
+        strong::before {
+            position: absolute;
+            left: 50%;
+            white-space: nowrap;
+            bottom: 100%;
+            margin-bottom: 3px;
+            color: black;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 300;
+            content: "<strong />";
+            display: block;
+        }
+        a {
+            background-color: green; color: white; position: relative;
+        }
+        a::before {
+            position: absolute;
+            left: 50%;
+            white-space: nowrap;
+            bottom: 100%;
+            margin-bottom: 3px;
+            color: green;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 300;
+            content: "<a />";
+            display: block;
+        }*/
+    </style>
+
+    <!--<link rel="icon" href="/favicon.png" type="image/png">-->
+</head>
+
+<body role="document">
+
+    <div id="generated">
+        <p data-ids="[1,1,4,2]" data-perf="hidden" style="text-transform: uppercase; background-color: rgb(238, 238, 238);">Hey all!<br><br> It's been a while since we partied <strong style="background-color: orange; color: blue; font-size: 1.3em;">together</strong> in a pool full of people!</p><div data-id="124"><img src="https://static.toiimg.com/photo/msid-58515713,width-96,height-65.cms"></div><h2 id="table-of-contents">Table of contents:</h2><ol><li><a href="#starting-a-youtube-channel"><strong><em>How to start a youtube channel</em></strong></a>Where to find your topics?</li><li>Where to find your topics?</li><li>What equipment do you need?</li></ol><h2 id="table-of-contents">Ingredients</h2><ul><li><a href="#table-of-contents">How to start a podcast?</a>Where to find your topics?</li><li>Where to find your topics?</li><li data-element-type="listitem">What equipment do you need?</li></ul><h2>Code example</h2><pre><code>const item = getItem();</code><span>//this is a comment</span><br><code data-lang="javascript">item.eat();<span>//this is a comment</span></code><br><br>and this is how you can code!</pre>
+    </div>
+
+    <script>
+        {
+            (async () => {
+                const {getElementNameForTagName} = await import('./src/Parser/index.js');
+
+                const generated = document.getElementById("generated");
+
+                const json = [];
+
+                generated.childNodes.forEach(node => {
+                    //TODO: attachments
+                    if(node.nodeType === Node.ELEMENT_NODE) {
+                        const blockType = getElementNameForTagName(node.tagName);
+
+                        if(blockType) {
+                            const block = {
+                                type: blockType,
+                            };
+
+                            const dataAttributes = Object.entries(node.dataset);
+
+                            if(dataAttributes.length) {
+                                block.dataset = {};
+                                dataAttributes.forEach(item => {
+                                    const key = item[0];
+                                    const value = item[1];
+
+                                    block.dataset[key] = value;
+                                });
+                            }
+
+                            json.push(block);
+                        } else {
+                            console.warn("Unknown block type: %o", node);
+                        }
+                    } else {
+                        console.info("There is a non element node type: %o", node)
+                    }
+                });
+
+                console.log("generated json: %o", json)
+
+
+            })();
+        }
+    </script>
+</body>
+</html>

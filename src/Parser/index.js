@@ -1,4 +1,4 @@
-const BLOCK_ELEMENTS = [
+export const BLOCK_ELEMENTS = [
     "paragraph",
     "heading",
     "preformatted",
@@ -89,6 +89,29 @@ const getElementTagNameForInlineElementName = (elementName) => {
     }
 
     return elementName;
+};
+
+export const getElementNameForTagName = (tagName) => {
+    tagName = tagName.toLowerCase();
+
+    switch(tagName) {
+        case "p":
+            return "paragraph";
+        case "ul":
+        case "ol":
+            return "lis";
+        case "h1":
+        case "h2":
+        case "h3":
+        case "h4":
+        case "h5":
+        case "h6":
+            return "heading";
+        case "pre":
+            return "preformatted";
+    }
+
+    return null;
 };
 
 export const createElementForElementName = (elementName, options = {}) => {
