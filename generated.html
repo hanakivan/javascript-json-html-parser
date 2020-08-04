@@ -89,7 +89,7 @@
     <script>
         {
             (async () => {
-                const {getElementNameForTagName} = await import('./src/Parser/index.js');
+                const {getElementNameForTagName, snakeCaseToCamelCase} = await import('./src/Parser/index.js');
 
                 const generated = document.getElementById("generated");
 
@@ -115,6 +115,43 @@
 
                                     block.dataset[key] = value;
                                 });
+                            }
+
+                            if(node.style.length) {
+                                block.style = {};
+
+                                let i = 0;
+                                const maxIterations = 1000;
+                                do {
+                                    const property = node.style.item(i);
+                                    if(property) {
+                                        const value = node.style.getPropertyValue(property);
+
+                                        block.style[snakeCaseToCamelCase(property)] = value;
+                                    }
+
+                                    i++;
+                                } while (node.style.item(i).trim().length > 0 && i <= maxIterations);
+                            }
+
+                            if(block.type === "heading") {
+                                const matches = node.tagName.match(/(?<level>\d+)/);
+                                const level = parseInt(matches.groups.level);
+
+                                if(!isNaN(level)) {
+                                    block.level = level;
+                                }
+                            } else if (block.type === "list") {
+                                const matches = node.tagName.match(/^(?<order>(o|u))l$/i);
+                                if(matches.groups.order === "O") {
+                                    block.order = "ordered";
+                                } else {
+                                    block.order = "unordered";
+                                }
+                            }
+
+                            if(node.id) {
+                                block.id = node.id;
                             }
 
                             json.push(block);

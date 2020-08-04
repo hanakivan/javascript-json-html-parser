@@ -99,7 +99,7 @@ export const getElementNameForTagName = (tagName) => {
             return "paragraph";
         case "ul":
         case "ol":
-            return "lis";
+            return "list";
         case "h1":
         case "h2":
         case "h3":
@@ -170,4 +170,26 @@ const parseStyles = (element, styleObject) => {
 
         element.style[property] = value;
     });
+};
+
+export const snakeCaseToCamelCase = (string) => {
+    let split = string.split("-");
+
+    if(split.length) {
+        const firstWord = split.shift();
+
+        split = split.map(word => word.trim()).filter(word => word.length > 0).map(word => {
+            const firstLetter = word.substring(0, 1).toUpperCase();
+            const restOfTheWord = word.substring(1).toLowerCase();
+
+            return `${firstLetter}${restOfTheWord}`;
+        });
+
+        split.unshift(firstWord);
+
+        return split.join("");
+    } else {
+        return string;
+    }
+
 };
