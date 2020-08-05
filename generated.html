@@ -89,9 +89,16 @@
     <script>
         {
             (async () => {
-                const {getElementNameForTagName, snakeCaseToCamelCase} = await import('./src/Parser/libs.js');
+                const {HTML2JSON} = await import('./src/Parser/HTML2JSON.js');
 
                 const generated = document.getElementById("generated");
+                const generatedHTML = generated.innerHTML;
+
+                const parser = new HTML2JSON(generatedHTML);
+
+                console.log("Final JSON: \n\n%o", parser.getJSON());
+
+                return ;
 
                 const json = [];
 
