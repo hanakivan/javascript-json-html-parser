@@ -101,13 +101,22 @@
     <script>
         {
             (async () => {
-                const {parseChildren, isBlockElement, isAttachment, createElementForElementName} = await import('./src/Parser/index.js');
+                const {parseChildren, isBlockElement, isAttachment, createElementForElementName} = await import('./src/Parser/libs.js');
+                const {Parser} = await import('./src/Parser/Parser.js');
 
                 const result = document.getElementById("result");
 
                 fetch("./editorState.json")
                     .then(response => response.json())
                     .then(tree => {
+
+                        const parser = new Parser(tree);
+
+                        console.log(parser.getHTML());
+
+                        return;
+
+
                         const items = [];
 
                         tree.forEach(item => {
