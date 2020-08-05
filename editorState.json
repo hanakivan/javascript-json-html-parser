@@ -84,7 +84,23 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "How to start a youtube channel"
+                        "text": "How to start a "
+                      },
+                      {
+                        "type": "span",
+                        "style": {
+                          "color": "red"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "youtube"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": "channel"
                       }
                     ]
                   }
