@@ -1,6 +1,6 @@
 import {parseChildren, isBlockElement, isAttachment, createElementForElementName} from './libs.js';
 
-export class Parser {
+export class JSON2HTML {
 
     json = null;
 

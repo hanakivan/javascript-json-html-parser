@@ -102,7 +102,7 @@
         {
             (async () => {
                 const {parseChildren, isBlockElement, isAttachment, createElementForElementName} = await import('./src/Parser/libs.js');
-                const {Parser} = await import('./src/Parser/Parser.js');
+                const {JSON2HTML} = await import('./src/Parser/JSON2HTML.js');
 
                 const result = document.getElementById("result");
 
@@ -110,7 +110,7 @@
                     .then(response => response.json())
                     .then(tree => {
 
-                        const parser = new Parser(tree);
+                        const parser = new JSON2HTML(tree);
 
                         console.log(parser.getHTML());
 
